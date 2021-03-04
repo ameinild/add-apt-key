@@ -1,5 +1,5 @@
 # POSIX Script for installing APT keys
-## --help
+## General help
 This script will help with installing PGP keys for APT repositories.
 
 This script supports up to 2 arguments:
@@ -19,14 +19,21 @@ This script has a config file /etc/add-apt-key.conf, where the following variabl
   - removetmp : if set to Yes - remove input (non-converted) file
 
 Example 1: (PWD=/root)
-  sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/local/share/keyrings/
+
+    sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/local/share/keyrings/
+
 Will download key in /root, convert it and store as /usr/local/share/keyrings/mariadb_release_signing_key.gpg
 
 Example 2: (PWD=/home/user)
-  sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/local/share/keyrings/mariadbkey
+
+    sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/local/share/keyrings/mariadbkey
+
 Will use existing key in /root, convert it and store as /usr/local/share/keyrings/mariadbkey.gpg
 
-Example 3: (PWD=/home/user)  sudo add-apt-key mariadb_release_signing_key.asc mariadbkey
+Example 3: (PWD=/home/user)
+
+    sudo add-apt-key mariadb_release_signing_key.asc mariadbkey
+
 Will use existing key in /home/user, convert it and store as /usr/share/keyrings/mariadbkey.gpg
 
 ## Installation
