@@ -53,7 +53,7 @@ if [ "$1" = "--help" ]; then
   echo "    - Only a path (end with /) - output path is given here, filename is taken from existing key"
   echo "    - Empty - output path is set in config, filename is taken from existing key"
   echo ""
-  echo "This script has a config file /etc/add-apt-key.conf, where the following variables can be set:"
+  echo "This script has a config file /usr/local/etc/add-apt-key.conf, where the following variables can be set:"
   echo "  - keypath   : path to store converted key - default is /usr/share/keyrings"
   echo "  - verbosity : if set to Yes - displays extra output"
   echo "  - removetmp : if set to Yes - remove input (non-converted) file"
