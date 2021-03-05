@@ -39,5 +39,6 @@ Will use existing key in `/home/user`, convert it and store as `/usr/share/keyri
 ## Installation
 Install by running the following commands:
 
-    sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/add-apt-key
+    sudo curl -L https://raw.githubusercontent.com/ameinild/add-apt-key/master/add-apt-key -o /usr/local/bin/add-apt-key
+    sudo curl -L https://raw.githubusercontent.com/ameinild/add-apt-key/master/add-apt-key.conf -o /etc/add-apt-key.conf
     sudo chmod a+rx /usr/local/bin/add-apt-key
