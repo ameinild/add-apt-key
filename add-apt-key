@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Add APT key script
-# Version : 1.0.0-1
+# Version : 1.0.0-2
 # Release : 2021-03-05
 # Author  : Artur Meinild
 
@@ -11,8 +11,8 @@ verbosity="No"
 removetmp="No"
 
 # Include configuration file
-if [ -f "/etc/add-apt-key.conf" ]; then
-  . "/etc/add-apt-key.conf"
+if [ -f "/usr/local/etc/add-apt-key.conf" ]; then
+  . "/usr/local/etc/add-apt-key.conf"
 fi
 
 # Convert strings to lowercase

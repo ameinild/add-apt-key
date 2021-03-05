@@ -13,7 +13,7 @@ This script supports up to 2 arguments:
     - Only a path (end with /) - output path is given here, filename is taken from existing key
     - Empty - output path is set in config, filename is taken from existing key
 
-This script has a config file `/etc/add-apt-key.conf`, where the following variables can be set:
+This script has a config file `/usr/local/etc/add-apt-key.conf`, where the following variables can be set:
   - `keypath`   : path to store converted key - default is `/usr/share/keyrings`
   - `verbosity` : if set to Yes - displays extra output
   - `removetmp` : if set to Yes - remove input (non-converted) file
@@ -40,5 +40,5 @@ Will use existing key in `/home/user`, convert it and store as `/usr/share/keyri
 Install by running the following commands:
 
     sudo curl -L https://raw.githubusercontent.com/ameinild/add-apt-key/master/add-apt-key -o /usr/local/bin/add-apt-key
-    sudo curl -L https://raw.githubusercontent.com/ameinild/add-apt-key/master/add-apt-key.conf -o /etc/add-apt-key.conf
+    sudo curl -L https://raw.githubusercontent.com/ameinild/add-apt-key/master/add-apt-key.conf -o /usr/local/etc/add-apt-key.conf
     sudo chmod a+rx /usr/local/bin/add-apt-key
