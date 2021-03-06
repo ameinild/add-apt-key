@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Add APT key script
-# Version : 1.0.0-2
-# Release : 2021-03-05
+# Version : 1.0.0-3
+# Release : 2021-03-06
 # Author  : Artur Meinild
 
 # Initial configuration variables
@@ -148,6 +148,7 @@ esac
 # Check if tmpfile exist
 [ "$verbosity" = "yes" ] && echo "Tmppath: $tmppath"
 [ "$verbosity" = "yes" ] && echo "Tmpfile: $tmpfile"
+echo "Verifying keyfile .."
 if [ ! -f "$tmppath/$tmpfile" ]; then
   exit_error "keyfile does not exist"
 fi
@@ -191,6 +192,9 @@ case $(file "$tmppath/$tmpfile") in
   # Public ring (v4)
   *'PGP/GPG key public ring (v4)'*)
     cp "$tmppath/$tmpfile" "$tmppath/$tmpfile.gpg"
+    ;;
+  *)
+    exit_error "invalid input keyfile format"
     ;;
 esac
 
