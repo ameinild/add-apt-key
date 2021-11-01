@@ -73,6 +73,7 @@ if [ "$1" = "--help" ]; then
   echo "After installing the PGP key, it is also possible to add the key and repository to /etc/apt/sources.list"
   echo "  - The choice to add this will be presented in the script as the first input option"
   echo "  - If Yes is chosen, the repository string must be pasted as the second input option"
+  echo ""
   echo "This completes the key installation by adding the corresponding repository line to /etc/apt/sources.list"
   exit 0
 fi
