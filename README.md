@@ -36,6 +36,11 @@ Example 3: (`PWD=/home/user`)
 
 Will use existing key in `/home/user`, convert it and store as `/usr/share/keyrings/mariadbkey.gpg`
 
+After installing the PGP key, it is also possible to add the key and repository to `/etc/apt/sources.list`
+  - The choice to add this will be presented in the script as the first input option
+  - If Yes is chosen, the repository string must be pasted as the second input option
+This completes the key installation by adding the corresponding repository line to `/etc/apt/sources.list`
+
 ## Installation
 Install by running the following commands:
 

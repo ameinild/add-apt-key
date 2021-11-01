@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Add APT key script
-# Version : 1.0.0-3
-# Release : 2021-03-06
+# Version : 1.1.0-4
+# Release : 2021-11-01
 # Author  : Artur Meinild
 
 # Initial configuration variables
@@ -70,6 +70,10 @@ if [ "$1" = "--help" ]; then
   echo "  sudo add-apt-key mariadb_release_signing_key.asc mariadbkey"
   echo "Will use existing key in /home/user, convert it and store as /usr/share/keyrings/mariadbkey.gpg"
   echo ""
+  echo "After installing the PGP key, it is also possible to add the key and repository to /etc/apt/sources.list"
+  echo "  - The choice to add this will be presented in the script as the first input option"
+  echo "  - If Yes is chosen, the repository string must be pasted as the second input option"
+  echo "This completes the key installation by adding the corresponding repository line to /etc/apt/sources.list"
   exit 0
 fi
 
@@ -220,9 +224,34 @@ if [ "$removetmp" = "yes" ]; then
   rm -f "$tmppath/$tmpfile"
 fi
 
-# Print message for repo installation
-# Unfortunately, add-apt-repository does not support adding repos with the [signed-by=] declaration
-# Until this is fixed, I can only recommend adding the repo manually to sources.list
+
+# Prompt for option to add key and repo to sources.list
 echo ""
-echo "Add the following line to /etc/apt/sources.list to add the repository:"
-echo "deb [signed-by=$keypath/$filename.gpg] https://sdn.domain.tdn/path/repo distribution components"
+echo "Would you like to add the PGP key and repository to /etc/apt/sources.list? (yes/no)"
+read -r answer
+echo ""
+
+# Convert answer to lowercase
+answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+
+# Check answer and prompt/perform as designated
+if [ ! "$answer" = "yes" ]
+then
+  [ ! "$answer" = "no" ] && echo "Invalid answer - exiting." && echo ""
+  # Print message for manual repo installation
+  echo "Please finish the installation manually by adding the following line to /etc/apt/sources.list:"
+  echo "deb [signed-by=$keypath/$filename.gpg] https://sdn.domain.tdn/path/repo distribution components"
+else
+  # Prompt for repository string (URL distribution components)
+  echo "Please paste the repository string (URL distribution components - e.g. https://mirrors.dotsrc.org/mariadb/repo/10.6/ubuntu focal main):"
+  read -r repostring
+  echo ""
+
+  # Adding the repo to "/etc/apt/sources.list"
+  echo "" >> /etc/apt/sources.list
+  echo "deb [signed-by=$keypath/$filename.gpg] $repostring" >> /etc/apt/sources.list
+
+  # Print message for script repo installation
+  echo "The installation has now been finished by adding the following line to /etc/apt/sources.list:"
+  echo "deb [signed-by=$keypath/$filename.gpg] $repostring"
+fi
