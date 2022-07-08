@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # Add APT key script
-# Version : 1.1.0-5
-# Release : 2022-05-25
+# Version : 1.1.1-6
+# Release : 2022-07-07
 # Author  : Artur Meinild
 
 # Initial configuration variables
-keypath="/usr/share/keyrings/"
+keypath="/etc/apt/keyrings/"
 verbosity="No"
 removetmp="No"
 
@@ -54,21 +54,21 @@ if [ "$1" = "--help" ]; then
   echo "    - Empty - output path is set in config, filename is taken from existing key"
   echo ""
   echo "This script has a config file /usr/local/etc/add-apt-key.conf, where the following variables can be set:"
-  echo "  - keypath   : path to store converted key - default is /usr/share/keyrings"
+  echo "  - keypath   : path to store converted key - default is /etc/apt/keyrings"
   echo "  - verbosity : if set to Yes - displays extra output"
   echo "  - removetmp : if set to Yes - remove input (non-converted) file"
   echo ""
   echo "Example 1: (PWD=/root)"
-  echo "  sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/local/share/keyrings/"
-  echo "Will download key in /root, convert it and store as /usr/local/share/keyrings/mariadb_release_signing_key.gpg"
+  echo "  sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/share/keyrings/"
+  echo "Will download key in /root, convert it and store as /usr/share/keyrings/mariadb_release_signing_key.gpg"
   echo ""
   echo "Example 2: (PWD=/home/user)"
-  echo "  sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/local/share/keyrings/mariadbkey"
-  echo "Will use existing key in /root, convert it and store as /usr/local/share/keyrings/mariadbkey.gpg"
+  echo "  sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/share/keyrings/mariadbkey"
+  echo "Will use existing key in /root, convert it and store as /usr/share/keyrings/mariadbkey.gpg"
   echo ""
   echo "Example 3: (PWD=/home/user)"
   echo "  sudo add-apt-key mariadb_release_signing_key.asc mariadbkey"
-  echo "Will use existing key in /home/user, convert it and store as /usr/share/keyrings/mariadbkey.gpg"
+  echo "Will use existing key in /home/user, convert it and store as /etc/apt/keyrings/mariadbkey.gpg"
   echo ""
   echo "After installing the PGP key, it is also possible to add the key and repository to /etc/apt/sources.list"
   echo "  - The choice to add this will be presented in the script as the first input option"

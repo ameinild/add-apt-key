@@ -14,27 +14,27 @@ This script supports up to 2 arguments:
     - Empty - output path is set in config, filename is taken from existing key
 
 This script has a config file `/usr/local/etc/add-apt-key.conf`, where the following variables can be set:
-  - `keypath`   : path to store converted key - default is `/usr/share/keyrings`
+  - `keypath`   : path to store converted key - default is `/etc/apt/keyrings`
   - `verbosity` : if set to Yes - displays extra output
   - `removetmp` : if set to Yes - remove input (non-converted) file
 
 Example 1: (`PWD=/root`)
 
-    sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/local/share/keyrings/
+    sudo add-apt-key https://mariadb.org/mariadb_release_signing_key.asc /usr/share/keyrings/
 
-Will download key in `/root`, convert it and store as `/usr/local/share/keyrings/mariadb_release_signing_key.gpg`
+Will download key in `/root`, convert it and store as `/usr/share/keyrings/mariadb_release_signing_key.gpg`
 
 Example 2: (`PWD=/home/user`)
 
-    sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/local/share/keyrings/mariadbkey
+    sudo add-apt-key /root/mariadb_release_signing_key.asc /usr/share/keyrings/mariadbkey
 
-Will use existing key in `/root`, convert it and store as `/usr/local/share/keyrings/mariadbkey.gpg`
+Will use existing key in `/root`, convert it and store as `/usr/share/keyrings/mariadbkey.gpg`
 
 Example 3: (`PWD=/home/user`)
 
     sudo add-apt-key mariadb_release_signing_key.asc mariadbkey
 
-Will use existing key in `/home/user`, convert it and store as `/usr/share/keyrings/mariadbkey.gpg`
+Will use existing key in `/home/user`, convert it and store as `/etc/apt/keyrings/mariadbkey.gpg`
 
 After installing the PGP key, it is also possible to add the key and repository to `/etc/apt/sources.list`
   - The choice to add this will be presented in the script as the first input option
