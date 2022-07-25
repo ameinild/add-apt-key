@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Add APT key script
-# Version : 1.1.1-6
-# Release : 2022-07-07
+# Version : 1.1.2-7
+# Release : 2022-07-25
 # Author  : Artur Meinild
 
 # Initial configuration variables
@@ -195,7 +195,7 @@ case $(file "$tmppath/$tmpfile") in
     [ -f "$tmppath/temp-keyring.gpg~" ] && rm "$tmppath/temp-keyring.gpg~"
     ;;
   # Public ring (v4)
-  *'PGP/GPG key public ring (v4)'*)
+  *'OpenPGP Public Key Version 4'*)
     cp "$tmppath/$tmpfile" "$tmppath/$tmpfile.gpg"
     ;;
   *)
@@ -209,9 +209,9 @@ if [ ! -f "$tmppath/$tmpfile.gpg" ]; then
 fi
 
 # Check if keyfile is the right type
-keyfiletype=$(file "$tmppath/$tmpfile.gpg" | grep -oh 'OpenPGP Public Key Version 4')
+keyfiletype=$(file "$tmppath/$tmpfile.gpg" | grep -c 'OpenPGP Public Key Version 4')
 
-if [ "$keyfiletype" != "OpenPGP Public Key Version 4" ]; then
+if [ "$keyfiletype" -eq 0 ]; then
   exit_error "keyfile is not a PGP/GPG key public ring"
 fi
 
